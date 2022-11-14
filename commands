@@ -1,0 +1,5 @@
+mongo
+  docker run --rm --name mongodb -v mongo-data -it mongo
+
+backend
+  docker run --rm -it --network mean-net -p 80:80 ecommerce-backend

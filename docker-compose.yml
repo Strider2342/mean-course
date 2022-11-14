@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  db:
+    image: "mongo:latest"
+    container_name: "mongodb"
+    ports:
+      - "27017:27017"
+    volumes:
+      - "db:/data/db"
+
+  backend:
+    build: "./backend"
+    container_name: "backend"
+    ports:
+      - "80:80"
+    depends_on:
+      - "db"
+    volumes:
+      - "./backend:/app"
+      - "/app/node_modules"
+    env_file:
+      - "./env/backend.env"
+
+  # frontend:
+volumes:
+  db:
